@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmx86ih6xa78h"]
+
+[ext_resource type="Script" path="res://Items/item.gd" id="1_upl3u"]
+[ext_resource type="Texture2D" uid="uid://c6x7gq6a81pia" path="res://res/Things/11a.png" id="2_0y5ci"]
+[ext_resource type="AudioStream" uid="uid://d0a8mv8xm2s0b" path="res://res/Sounds/drop0.mp3" id="3_awsop"]
+[ext_resource type="AudioStream" uid="uid://b7t2ng4m3iy4u" path="res://res/Sounds/drop2.mp3" id="4_ecrd1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vmur7"]
+radius = 8.06226
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3g4c"]
+atlas = ExtResource("2_0y5ci")
+region = Rect2(0, 0, 16, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31ne2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3g4c")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Key" type="Area2D"]
+script = ExtResource("1_upl3u")
+type = 1
+points = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vmur7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.875, 1)
+sprite_frames = SubResource("SpriteFrames_31ne2")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_awsop")
+pitch_scale = 1.25
+
+[node name="OnRecord" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ecrd1")
+volume_db = -80.0
+pitch_scale = 1.25

@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1bjgiqulwwew"]
+
+[ext_resource type="Theme" uid="uid://14wy2gupjxwc" path="res://res/main_theme.tres" id="1_hymg7"]
+[ext_resource type="Script" path="res://res/Menu/options.gd" id="1_tb2ff"]
+[ext_resource type="Texture2D" uid="uid://dbtt6n2svtuxv" path="res://res/TerrainSec/Terrain2_assets/Background_1.png" id="2_wq2ct"]
+[ext_resource type="Texture2D" uid="uid://c03ys2ur3nl8u" path="res://res/Main Characters/Pink Man/Jump (32x32).png" id="3_hp8w5"]
+[ext_resource type="Texture2D" uid="uid://daee8b40vobfr" path="res://res/TerrainSec/Terrain2_assets/Background_2.png" id="3_lmade"]
+[ext_resource type="AudioStream" uid="uid://3ykylsq3yh0" path="res://res/Music/Light Ambience 4.mp3" id="5_rmtsj"]
+
+[node name="Options" type="CanvasLayer"]
+script = ExtResource("1_tb2ff")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -611.0
+offset_right = 611.0
+offset_bottom = 245.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_hymg7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "УПРАВЛЕНИЕ"
+horizontal_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
+position = Vector2(-243, 233)
+scale = Vector2(11.625, 11.625)
+texture = ExtResource("3_hp8w5")
+
+[node name="Label2" type="Label" parent="."]
+texture_filter = 1
+offset_left = 542.0
+offset_top = 40.0
+offset_right = 1047.0
+offset_bottom = 545.0
+size_flags_horizontal = 8
+theme = ExtResource("1_hymg7")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 3
+text = "← и →  Отвечают за направление движения персонажа.
+↑ Отвечает за прыжок персонажа
+↑+↑ Двойной прыжок (Работает только при условии собранного предмета)
+↑+←+↑ или ↑+→+↑ Отскок от стены (Прыгните на стену и зажмите направление персонажа, после отпрыгивайте)
+Dash или Shift - Можно получить на 4-м уровне. Чтобы он сработал следует ОТПУСТИТЬ конпку направления движения!
+(Кулдаун половина секунды). Использовать  можно в воздухе и на земле."
+horizontal_alignment = 2
+autowrap_mode = 3
+justification_flags = 160
+
+[node name="InMenuBack" type="Button" parent="."]
+offset_left = 20.0
+offset_top = 586.0
+offset_right = 159.0
+offset_bottom = 630.0
+theme = ExtResource("1_hymg7")
+theme_override_font_sizes/font_size = 45
+text = "ВЕРНУТЬСЯ"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, -1)
+motion_scale = Vector2(-0.2, 0)
+motion_mirroring = Vector2(2098.41, 0)
+
+[node name="2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(522.752, 221)
+scale = Vector2(4.229, 4.625)
+texture = ExtResource("3_lmade")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 80)
+motion_scale = Vector2(-0.067, 0)
+motion_mirroring = Vector2(2098.41, 0)
+
+[node name="1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(522.752, 140)
+scale = Vector2(4.22945, 4.625)
+texture = ExtResource("2_wq2ct")
+
+[node name="options_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rmtsj")
+volume_db = -2.811
+autoplay = true
+mix_target = 1
+
+[connection signal="pressed" from="InMenuBack" to="." method="_on_in_menu_back_pressed"]

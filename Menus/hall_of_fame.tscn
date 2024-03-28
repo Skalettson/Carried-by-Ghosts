@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyhd3471rx1ny"]
+
+[ext_resource type="Script" path="res://Menus/hall_of_fame.gd" id="1_nmgth"]
+[ext_resource type="Theme" uid="uid://14wy2gupjxwc" path="res://res/main_theme.tres" id="2_f8aj2"]
+[ext_resource type="Texture2D" uid="uid://dta244tgswglb" path="res://res/Menu/Buttons/Back.png" id="3_m0fel"]
+
+[node name="HallOfFame" type="CanvasLayer"]
+script = ExtResource("1_nmgth")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_f8aj2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HIScore" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Лучший рекорд: ???"
+horizontal_alignment = 1
+
+[node name="GoBack" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "НАЗАД"
+
+[node name="HOFBackIMG" type="Sprite2D" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0.447059)
+self_modulate = Color(0.219608, 0.890196, 0.792157, 1)
+position = Vector2(160, 61)
+scale = Vector2(2.095, 2.095)
+texture = ExtResource("3_m0fel")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GoBack" to="." method="_on_go_back_pressed"]
